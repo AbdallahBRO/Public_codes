@@ -1,0 +1,172 @@
+fun main() {
+    var abdo = DateBase("abdelrhman ahmed", 18, "Berlin", "Man", "Muslim")
+    var ahmed = DateBase("ahmed hany", 14, "Cairo", "Man", "Muslim")
+    // ahmed.showReplace()
+    var st = 1
+    var password = 0
+    var userName = ""
+    var trying = 3
+    st@ while (true) {
+        println("type username: ")
+        userName = readln().uppercase()
+        try {
+            println("type password: ")
+            password = readln().toInt()
+        } catch (E: Exception) {
+            println("you must type nums in password")
+            continue@st
+        }
+
+        if (userName == "ABDELRHMAN" && password == 2005) {
+            abdo.showReplace()
+            eisa@ while (true) {
+
+                var end = whatDoNext()
+                if (end == "end") break@st
+                else if (end == "re") continue@st
+                else {
+                    println("you already sign out, you must select C/E")
+                    continue@eisa
+                }
+            }
+        } else if (userName == "AHMED" && password == 14) {
+            ahmed.showReplace()
+            eisa@ while (true) {
+
+                var end = whatDoNext()
+                if (end == "end") break@st
+                else if (end == "re") continue@st
+                else {
+                    println("you already sign out, you must select C/E")
+                    continue@eisa
+                }
+            }
+        } else {
+            println("you have error on Username or Password")
+            trying -= 1
+            println("you have Now $trying try")
+            if (trying == 0) {
+                println("Sorry you don,t have Now any trys")
+                break@st
+            }
+        }
+    }
+}
+
+class DateBase(
+    var name: String? = null,
+    var age: Int? = null,
+    var country: String? = null,
+    var sex: String? = null,
+    var religion: String? = null
+) {}
+
+fun DateBase.showReplace() {
+
+    abdo@ while (true) {
+        try {
+            println("what you need ? 1_name\n2_age\n3_country\n4_male or female \n 5_Religion")
+            var show = readln().toInt()
+            when (show) {
+                1 -> {
+                    println("your name is $name")
+                }
+                2 -> {
+                    println("your age is $age")
+                }
+                3 -> {
+                    println("your country is $country")
+                }
+                4 -> {
+                    println("your sex is $sex")
+                }
+                5 -> {
+                    println("your religion is $religion")
+                }
+                else -> {
+                    println("you must select in 1..5")
+                    continue@abdo
+                }
+            }
+        } catch (E: Exception) {
+            println("you must type intger!")
+            continue@abdo
+        }
+
+        ahmed@ while (true) {
+
+            println("do you want replase value ?Y/N")
+            var rep = readln().uppercase()
+
+            when (rep) {
+                "Y" -> {
+                    println(
+                        "what you need ? 1_name\n2_age\n3_country\n4_male or female \n 5_Religion"
+                    )
+                    var want = readln()
+                    println("type New value")
+                    var new = readln()
+                    when (want) {
+                        "1" -> {
+                            name = new
+                        }
+                        "2" -> {
+                            try {
+                                age = new.toInt()
+                            } catch (E: Exception) {
+                                println("you must type integer")
+                            }
+                        }
+                        "3" -> {
+                            country = new
+                        }
+                        "4" -> {
+                            sex = new
+                        }
+                        "5" -> {
+                            religion = new
+                        }
+                    }
+                    if (whatDoNext() == "end") {
+                        println("you already sign out Now ")
+                        break@abdo
+                    } else {
+                        continue@abdo
+                    }
+                }
+                "N" -> {
+                    mina@ while (true) {
+                        var what = whatDoNext()
+                        if (what == "si") {
+                            println("you already sign out Now ")
+                            break@abdo
+                        } else if (what == "re") {
+                            continue@abdo
+                        } else {
+                            println("you must select S/C")
+                            continue@mina
+                        }
+                    }
+                }
+                else -> {
+                    println("you must select Y/N")
+                    continue@ahmed
+                }
+            } // while (1 > 2)
+        }
+    }
+}
+
+fun whatDoNext(): String {
+    ali@ while (true) {
+        println("do you want sign out/End/complete ? S/E/C")
+        var end = readln().uppercase()
+        return if (end == "E") "end"
+        else if (end == "C") "re"
+        else if (end == "S") "si"
+        else {
+            println("you must select Y/N")
+            continue@ali
+        }
+    }
+}
